@@ -1,4 +1,3 @@
-
 const char PAGE_AdminMainPage[] PROGMEM = R"=====(
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,6 +7,7 @@ const char PAGE_AdminMainPage[] PROGMEM = R"=====(
 	<a href="general.html" 		style="width:250px" 	class="btn btn--m btn--blue" >Weather settings</a><br>
 	<a href="ntp.html"   		style="width:250px"  	class="btn btn--m btn--blue" >NTP settings</a><br>
 	<a href="brightnes.html"	style="width:250px"  	class="btn btn--m btn--blue" >Display settings</a><br>
+	<a href="message.html"		style="width:250px"  	class="btn btn--m btn--blue" >Send a message</a><br>
 	<a href="info.html"   		style="width:250px"  	class="btn btn--m btn--blue" >Network information</a><br>
 <br>
 <script>

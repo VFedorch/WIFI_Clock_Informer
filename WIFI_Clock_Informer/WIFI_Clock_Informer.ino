@@ -81,6 +81,7 @@ Timer t;
 #include "Page_Information.h"
 #include "Page_Brightnes.h"
 #include "Page_General.h"
+#include "Page_Message.h"
 #include "Page_NetworkConfiguration.h"
 
 extern "C" {
@@ -208,6 +209,7 @@ void setup() {
 		config.isDayLightSaving = true;
 		config.DeviceName = "API key";
 		config.email = "cityID";
+		config.message = " ";
 	//vb9***********************************************************************************************************
 		config.textBrightnessD = 8;
 		config.textBrightnessN = 0;
@@ -251,6 +253,8 @@ void setup() {
 	server.on ( "/general.html", send_general_html  );
 	//  server.on ( "/example.html", []() { server.send_P ( 200, "text/html", PAGE_EXAMPLE );  } );
 		
+	server.on ( "/message.html", send_message_html  );
+		
 	server.on ( "/style.css", []() {
 		Serial.println("style.css");
 		server.send_P ( 200, "text/plain", PAGE_Style_css );
@@ -266,7 +270,8 @@ void setup() {
 	server.on ( "/admin/ntpvalues", send_NTP_configuration_values_html );
 	server.on ( "/admin/brightnesvalues", send_brightnes_configuration_values_html ); // brightnes
 	server.on ( "/admin/generalvalues", send_general_configuration_values_html);
-	server.on ( "/admin/devicename",     send_devicename_value_html);
+	server.on ( "/admin/devicename", send_devicename_value_html);
+	server.on ( "/admin/message", send_message_value_html);
 	  
 	  
 	server.onNotFound ( []() {

@@ -30,6 +30,7 @@ struct strConfig {
   String ntpServerName;                 // up to 32 Byte - EEPROM 128
   String DeviceName;                    // up to 32 Byte - EEPROM 160
   String email;                         // up to 32 Byte - EEPROM 192
+  String message;
   //vb9***********************************************************************************************************
   //Сохраняем яркость
   byte  textBrightnessD;              // 1 Byte - EEPROM 234
@@ -171,6 +172,7 @@ void WriteConfig(){
   WriteStringToEEPROM(128, config.ntpServerName);
   WriteStringToEEPROM(160, config.DeviceName);
   WriteStringToEEPROM(192, config.email);
+  WriteStringToEEPROM(256, config.message);
 
     // Application Settings here... from EEPROM 192 up to 511 (0 - 511)
 
@@ -214,6 +216,7 @@ boolean ReadConfig(){
     config.DeviceName = ReadStringFromEEPROM(160);
     
     config.email = ReadStringFromEEPROM(192);
+	  config.message = ReadStringFromEEPROM(256);
 
     // Application parameters here ... from EEPROM 192 to 511
     
@@ -248,8 +251,8 @@ void printConfig(){
   Serial.printf("PWD:%s\n", config.password.c_str());
   Serial.printf("ntp ServerName:%s\n", config.ntpServerName.c_str());
   Serial.printf("Device Name:%s\n", config.DeviceName.c_str());
-  
   Serial.printf("Email:%s\n", config.email.c_str());
+  Serial.printf("Message:%s\n", config.message.c_str());
 
   
     // Application Settings here... from EEPROM 192 up to 511 (0 - 511)
