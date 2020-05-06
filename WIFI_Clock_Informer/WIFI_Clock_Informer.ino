@@ -140,9 +140,6 @@ String date1;
 String currencyRates;
 String weatherString;
 String weatherString1;
-String weatherStringz;
-String weatherStringz1;
-String weatherStringz2;
 
 String cityID;
   
@@ -205,11 +202,11 @@ void setup() {
 		config.Netmask[0] = 255; config.Netmask[1] = 255; config.Netmask[2] = 255; config.Netmask[3] = 0;
 		config.Gateway[0] = 192; config.Gateway[1] = 168; config.Gateway[2] = 1; config.Gateway[3] = 1;
 		config.DNS[0] = 192; config.DNS[1] = 168; config.DNS[2] = 1; config.DNS[3] = 1;
-		config.ntpServerName = "pool.ntp.org"; // to be adjusted to PT ntp.ist.utl.pt
+		config.ntpServerName = "ua.pool.ntp.org"; // to be adjusted to PT ntp.ist.utl.pt
 		config.Update_Time_Via_NTP_Every =  10;
 		config.timeZone = 3;
 		config.isDayLightSaving = true;
-		config.DeviceName = "API ключ";
+		config.DeviceName = "API key";
 		config.email = "cityID";
 	//vb9***********************************************************************************************************
 		config.textBrightnessD = 8;
@@ -326,7 +323,6 @@ void setup() {
 	//   t.every(10000, getTime);
 	}    
 	getWeatherData();
-	getWeatherDataz();
 	getTime();
 	getTime();
 	weatherKey = config.DeviceName.c_str();
@@ -352,7 +348,6 @@ void loop() {
 		if (lp==0){
 			getTime();
 			getWeatherData();
-			getWeatherDataz();
 		}
 		getTime();
 		disp=1;
@@ -382,7 +377,7 @@ void loop() {
 		displayInfo2();
 	}
 	if (disp ==6){
-		Text = weatherStringz + " " + weatherStringz1;
+		Text = L_message;
 		scrollText2();
 	}
   
@@ -619,70 +614,6 @@ void getWeatherData(){
 	Serial.println("POGODA: " + String(temp,0) + "\n");
 }
 
-// =======================================================================
-// Берем ПРОГНОЗ!!! погоды с сайта openweathermap.org
-// =======================================================================
-
-const char *weatherHostz = "api.openweathermap.org";
-
-void getWeatherDataz(){
-	
-	Serial.print("connecting to "); Serial.println(weatherHostz);
-	if (client.connect(weatherHostz, 80)) {
-		client.println(String("GET /data/2.5/forecast/daily?id=") + cityID + "&units=metric&appid=" + weatherKey + "&lang=" + lang + "&cnt=2" + "\r\n" + "Host: " + weatherHostz + "\r\nUser-Agent: ArduinoWiFi/1.1\r\n" + "Connection: close\r\n\r\n");
-	} else {
-		Serial.println("connection failed");
-		return;
-	}
-	String line;
-	int repeatCounter = 0;
-	while (!client.available() && repeatCounter < 10) {
-		delay(500);
-		Serial.println("w.");
-		repeatCounter++;
-	}
-	while (client.connected() && client.available()) {
-		char c = client.read(); 
-		if (c == '[' || c == ']') c = ' ';
-		line += c;
-	}
-	tvoday(line);
-	Serial.println(tempz + "\n");
-
-	client.stop();
-  
-	DynamicJsonBuffer jsonBuf;
-	JsonObject &root = jsonBuf.parseObject(tempz);
-	if (!root.success())
-	{
-		Serial.println("parseObject() failed");
-		return;
-	}
-	lon = root ["coord"]["lon"];
-	lat = root ["coord"]["lat"];
-  
-	float wSpeed = root ["speed"];
-	int wDeg = root ["deg"];
-	float tempMin = root ["temp"]["min"];
-	float tempMax = root ["temp"]["max"];
-	weatherDescription = root ["weather"]["description"].as<String>();
-  
-	weatherStringz = "Завтра температура " + String(tempMin,1) + "..." + String(tempMax,1) + "\xB0" + "C  " + weatherDescription;
-	Serial.println("!!!!!PROGNOZ: " + weatherStringz + " Wind: "+wSpeed+ " WindDeg: "+(wDeg)+ "\n");
-  
-	String windDegString;
-
-	if (wDeg>=345 || wDeg<=22) windDegString = L_Wind_Northern;
-	if (wDeg>=23 && wDeg<=68) windDegString = L_Wind_Northeastern;
-	if (wDeg>=69 && wDeg<=114) windDegString = L_Wind_East;
-	if (wDeg>=115 && wDeg<=160) windDegString = L_Wind_Southeastern;
-	if (wDeg>=161 && wDeg<=206) windDegString = L_Wind_Southern;
-	if (wDeg>=207 && wDeg<=252) windDegString = L_Wind_Southwestern;
-	if (wDeg>=253 && wDeg<=298) windDegString = L_Wind_West;
-	if (wDeg>=299 && wDeg<=344) windDegString = L_Wind_Northwestern;
-
-	weatherStringz1 = L_Wind + " " + windDegString + " " + String(wSpeed,1) + " " + L_Windspeed;
-}
 // =======================================================================
  void tvoday(String line){
     String s;

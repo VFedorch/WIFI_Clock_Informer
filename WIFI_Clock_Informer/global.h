@@ -170,7 +170,6 @@ void WriteConfig(){
   WriteStringToEEPROM(96, config.password);
   WriteStringToEEPROM(128, config.ntpServerName);
   WriteStringToEEPROM(160, config.DeviceName);
-  
   WriteStringToEEPROM(192, config.email);
 
     // Application Settings here... from EEPROM 192 up to 511 (0 - 511)

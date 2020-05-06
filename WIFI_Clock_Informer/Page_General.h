@@ -7,7 +7,7 @@ const char PAGE_AdminGeneralSettings[] PROGMEM =  R"=====(
 	<form action="" method="post">
 		<table border="0"  cellspacing="0" cellpadding="3" >
 			<tr>
-				<td align="right">API ключ</td>
+				<td align="right">API key</td>
 				<td><input id="devicename" name="devicename" size="32" value=""></td>
 			</tr>
 			<tr>
@@ -50,7 +50,6 @@ const char PAGE_AdminGeneralSettings[] PROGMEM =  R"=====(
 // Functions for this Page
 void send_devicename_value_html()
 {
-		
 	String values ="";
 	values += "devicename|" + (String) config.DeviceName + "|div\n";
 	server.send ( 200, "text/plain", values);
@@ -60,13 +59,12 @@ void send_devicename_value_html()
 
 void send_general_html()
 {
-	
 	if (server.args() > 0 )  // Save Settings
 	{	
 		String temp = "";
 		for ( uint8_t i = 0; i < server.args(); i++ ) {
 			if (server.argName(i) == "devicename") config.DeviceName = urldecode(server.arg(i)); 
-      if (server.argName(i) == "email") config.email = urldecode(server.arg(i));
+			if (server.argName(i) == "email") config.email = urldecode(server.arg(i));
 		}
 
 		WriteConfig();
@@ -74,17 +72,15 @@ void send_general_html()
 	}
 	server.send_P ( 200, "text/html", PAGE_AdminGeneralSettings ); 
 	Serial.println(__FUNCTION__); 
-	
-	
 }
 
 void send_general_configuration_values_html()
 {
 	String values ="";
 	values += "devicename|" +  (String)  config.DeviceName +  "|input\n";
-  values += "email|" +  (String)  config.email +  "|input\n";
+	values += "email|" +  (String)  config.email +  "|input\n";
 
 	server.send ( 200, "text/plain", values);
 	Serial.println(__FUNCTION__); 
-  AdminTimeOutCounter=0;
+	AdminTimeOutCounter=0;
 }

@@ -20,7 +20,7 @@ const char PAGE_NetworkConfiguration[] PROGMEM = R"=====(
 			</tr>
 			<tr>
 				<td align="right">Subnet:</td><td><input type="text" id="nm_0" name="nm_0" size="2">.<input type="text" id="nm_1" name="nm_1" size="2">.<input type="text" id="nm_2" name="nm_2" size="2">.<input type="text" id="nm_3" name="nm_3" size="2"></td>
-				</tr>
+			</tr>
 			<tr>
 				<td align="right">Gateway:</td><td><input type="text" id="gw_0" name="gw_0" size="2">.<input type="text" id="gw_1" name="gw_1" size="2">.<input type="text" id="gw_2" name="gw_2" size="2">.<input type="text" id="gw_3" name="gw_3" size="2"></td>
 			</tr>
@@ -81,7 +81,7 @@ const char PAGE_NetworkConfiguration[] PROGMEM = R"=====(
 const char PAGE_WaitAndReload[] PROGMEM = R"=====(
 <meta http-equiv="refresh" content="5; URL=config.html">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-Please wait .... Apply and restart.
+<h/><p align="center"><strong>Please wait .... Apply and restart.</strong></p>
 )=====";
 
 

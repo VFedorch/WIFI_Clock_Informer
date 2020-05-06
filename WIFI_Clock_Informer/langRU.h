@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Русская локализация
  * 
  */
@@ -41,10 +41,11 @@ String L_WD_Thursday = "Четверг";
 String L_WD_Friday = "Пятница";
 String L_WD_Saturday = "Суббота";
 String L_WD_Sunday = "Воскресенье";
-String L_No_conn = "Отсутствует подключение к WIFI. Подключитесь к WiFi-Clock и наберите в браузере 192.168.4.1";
+String L_No_conn = "Отсутствует подключение. Подключитесь к WiFi-Clock и наберите в браузере 192.168.4.1";
 String L_YoursIP = "Ваш IP:";
 // Отсутствует перевод на сайте с состоянием погоды (Ваш вариант) 
 String L_weatherDescription_shower_sleet = "снег с дождем";
 String L_weatherDescription_light_shower_snow = "небольшой снегопад";
+String L_message = "Первое сообщение";
 
 //  локализация HTMLок
