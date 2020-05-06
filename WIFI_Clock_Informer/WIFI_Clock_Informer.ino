@@ -196,7 +196,7 @@ void setup() {
 		// DEFAULT CONFIG
 		scrollConnect();
 		Serial.println("Setting AP mode default parameters");
-		config.ssid = "WiFi-Clock";       // SSID of access point
+		config.ssid = "WiFi-Clock"; // SSID of access point
 		config.password = "" ;   // password of access point
 		config.dhcp = true;
 		config.IP[0] = 192; config.IP[1] = 168; config.IP[2] = 1; config.IP[3] = 100;
@@ -382,7 +382,7 @@ void loop() {
 		displayInfo2();
 	}
 	if (disp ==6){
-		Text = L_message;
+		Text = config.message.c_str();
 		scrollText2();
 	}
   

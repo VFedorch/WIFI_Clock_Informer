@@ -24,7 +24,7 @@ const char PAGE_Message[] PROGMEM =  R"=====(
 		{
 			load("microajax.js","js", function() 
 			{
-					setValues("/admin/generalvalues");
+					setValues("/admin/message");
 			});
 		});
 	}
@@ -68,7 +68,7 @@ void send_message_html()
 	Serial.println(__FUNCTION__); 
 }
 
-void send_message_values_html()
+void send_message_configuration_values_html()
 {
 	String values ="";
 	values += "message|" +  (String)  config.message +  "|input\n";
