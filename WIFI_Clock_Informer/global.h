@@ -216,7 +216,7 @@ boolean ReadConfig(){
     config.DeviceName = ReadStringFromEEPROM(160);
     
     config.email = ReadStringFromEEPROM(192);
-	  config.message = ReadStringFromEEPROM(256);
+	config.message = ReadStringFromEEPROM(256);
 
     // Application parameters here ... from EEPROM 192 to 511
     

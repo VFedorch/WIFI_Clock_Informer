@@ -9,7 +9,7 @@ const char PAGE_Message[] PROGMEM =  R"=====(
 				<td align="center">Enter your message</td>
 			</tr>
 			<tr>
-				<tdtd align="center"><input id="message" name="message" size="32" value=""></td>
+				<td align="center"><input id="message" name="message" size="32" value=""></td>
 			
 			<tr>
 				<td colspan="2" align="center"><input type="submit" style="width:150px" class="btn btn--m btn--blue" value="Save"></td>

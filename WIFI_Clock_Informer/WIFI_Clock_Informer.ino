@@ -209,7 +209,7 @@ void setup() {
 		config.isDayLightSaving = true;
 		config.DeviceName = "API key";
 		config.email = "cityID";
-		config.message = " ";
+		config.message = "";
 	//vb9***********************************************************************************************************
 		config.textBrightnessD = 8;
 		config.textBrightnessN = 0;
