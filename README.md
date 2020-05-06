@@ -13,6 +13,6 @@
 
 ### Screanshots
 
-![Settings in browser](https://github.com/VFedorch/WIFI_Clock_Informer/raw/master/src/Screenshots.png)
+![Settings in browser](https://github.com/VFedorch/WIFI_Clock_Informer/raw/master/src/Screenshots.png "Settings in your browser")
 
 My mod of WIFI_Clock Based on https://www.youtube.com/watch?v=23Fk5X38x9E
