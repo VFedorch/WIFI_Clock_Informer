@@ -1,4 +1,5 @@
-# WIFI_Clock_Informe
+# WIFI Clock Informer
+```esp8266  max7219```
 
 ### Requirement:
 - Start Arduino and open the Preferences window.
