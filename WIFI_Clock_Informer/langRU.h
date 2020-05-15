@@ -7,6 +7,7 @@
  
 String L_today = "Сегодня";
 String L_outdoor = "На улице";
+String L_inside = "В помещении";
 String L_Humidity = "Влажность";
 String L_Atmospheric = "Атмосферное давление";
 String L_Atmospheric_mm = "мм";
@@ -46,6 +47,5 @@ String L_YoursIP = "Ваш IP:";
 // Отсутствует перевод на сайте с состоянием погоды (Ваш вариант) 
 String L_weatherDescription_shower_sleet = "снег с дождем";
 String L_weatherDescription_light_shower_snow = "небольшой снегопад";
-String L_message = "Первое сообщение";
 
-//  локализация HTMLок
+// Локализация HTML

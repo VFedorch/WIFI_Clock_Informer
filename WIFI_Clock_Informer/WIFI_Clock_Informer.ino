@@ -12,6 +12,8 @@
 #include <SPI.h>
 #include <ArduinoJson.h>
 #include "Fonts.h"
+#include "Adafruit_Sensor.h"
+#include "Adafruit_AM2320.h"
 
 //Выбераем язык бегущей строки
 //-----------------------------------------------
@@ -30,6 +32,8 @@ String lang = "ru"; //
 
 MD_Parola P = MD_Parola(CS_PIN, MAX_DEVICES);
 #define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
+
+Adafruit_AM2320 am2320 = Adafruit_AM2320();
 
 // Global data
 typedef struct
@@ -125,6 +129,8 @@ String weatherLocation = "";
 String country;
 int humidity;
 int pressure;
+int amTemp;
+int amHum;
 float pressureFIX;
 float temp;
 String tempz;
@@ -141,7 +147,7 @@ String date1;
 String currencyRates;
 String weatherString;
 String weatherString1;
-
+String TempHum;
 String cityID;
   
 WiFiClient client;
@@ -156,6 +162,7 @@ void setup() {
 	bool CFG_saved = false;
 	int WIFI_connected = false;
 	Serial.begin(115200);
+	am2320.begin();
 
 
 	pinMode(LED_PIN,OUTPUT);
@@ -328,6 +335,7 @@ void setup() {
 	//   t.every(10000, getTime);
 	}    
 	getWeatherData();
+	getTempHum();
 	getTime();
 	getTime();
 	weatherKey = config.DeviceName.c_str();
@@ -353,6 +361,7 @@ void loop() {
 		if (lp==0){
 			getTime();
 			getWeatherData();
+			getTempHum();
 		}
 		getTime();
 		disp=1;
@@ -382,8 +391,17 @@ void loop() {
 		displayInfo2();
 	}
 	if (disp ==6){
-		Text = config.message.c_str();
+		Text = TempHum;
 		scrollText2();
+	}
+	if (disp ==7){
+		rnd = random(0, ARRAY_SIZE(catalog));
+		Text = h + ":" + m;
+		displayInfo3();
+	}
+	if (disp ==8){
+		Text = config.message.c_str();
+		scrollText3();
 	}
   
 	//============длительное нажатие кнопки форматирует EEPROM
@@ -488,7 +506,7 @@ void displayInfo3(){
     if (P.displayAnimate()){
 		utf8rus(Text).toCharArray(buf, 256);
 		P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
-		if (!P.displayAnimate()) disp = 0;
+		if (!P.displayAnimate()) disp = 8;
     }
 }
 //==========================================================
@@ -512,7 +530,7 @@ void scrollText2(){
   if  (P.displayAnimate()){
 	  utf8rus(Text).toCharArray(buf, 256);
 	  P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
-	  if (!P.displayAnimate()) disp = 0;
+	  if (!P.displayAnimate()) disp = 7;
 	}
 }
 //==========================================================
@@ -617,6 +635,16 @@ void getWeatherData(){
 	weatherString += L_Wind + " " + windDegString + " " + String(windSpeed,1) + " " + L_Windspeed;
 	
 	Serial.println("POGODA: " + String(temp,0) + "\n");
+}
+
+void getTempHum(){
+	amTemp = am2320.readTemperature();
+	amHum = am2320.readHumidity();
+	
+	Serial.print("Temp: "); Serial.println(amTemp);
+	Serial.print("Hum: "); Serial.println(amHum);
+	
+	TempHum = L_inside + " " + amTemp + "\xB0"+"C " + " "+ L_Humidity + " " + amHum + "% ";
 }
 
 // =======================================================================

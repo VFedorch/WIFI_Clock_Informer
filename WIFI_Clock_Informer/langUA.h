@@ -1,4 +1,3 @@
-
 /*
  * Украинская локализация
  * 
@@ -8,6 +7,7 @@
  
 String L_today = "Сьогодні";
 String L_outdoor = "На дворі зара";
+String L_inside = "В помещении";
 String L_Humidity = "Вологість";
 String L_Atmospheric = "Атмосферний тиск";
 String L_Atmospheric_mm = "мм";
@@ -47,4 +47,5 @@ String L_YoursIP = "Ваш IP:";
 // Відсутній переклад на сайті зі станом погоди 
 String L_weatherDescription_shower_sleet = "дощ зi снiгом";
 String L_weatherDescription_light_shower_snow = "слабий снігопад";
-//  локализация HTMLок
+
+// Локализация HTML
