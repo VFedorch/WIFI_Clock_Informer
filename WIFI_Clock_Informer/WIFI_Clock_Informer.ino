@@ -361,8 +361,8 @@ void loop() {
 		if (lp==0){
 			getTime();
 			getWeatherData();
-			getTempHum();
 		}
+		getTempHum();
 		getTime();
 		disp=1;
 		lp++;
